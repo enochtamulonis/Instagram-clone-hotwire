@@ -1,0 +1,16 @@
+<%= turbo_stream_from :posts %>
+<div class="w-full flex flex-col">
+  <h1 class="text-4xl text-gray-900"> Welcome Home </h1>
+  
+  <br/>
+
+  <%= turbo_frame_tag :new_post do %>
+    <%= link_to "New Post", new_post_path, class: "bg-gradient-to-r from-indigo-500 to-purple-500 text-indigo-50 rounded-lg shadow-md p-3" %>
+  <% end %>
+
+  <br/>
+
+  <div id="posts" class="grid gap-8 h-full">
+    <%= render partial: "posts/post", collection: @posts %>
+  </div>
+</div>

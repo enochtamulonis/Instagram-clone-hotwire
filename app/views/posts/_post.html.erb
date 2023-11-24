@@ -1,0 +1,18 @@
+<div class="w-full">
+  <div class="text-gray-700">
+    <% if post.image.attached? %>
+      <%= image_tag post.image, class: "h-64 object-cover" %>
+    <% else %>
+      <span class="text-gray-100"> No image was attached </span>
+    <% end %>
+    <h3 class="text-gray-700 text-2xl"> <%= post.caption %> </h3>
+    <p class="text-gray-600 text-lg"> posted <%= time_ago_in_words post.created_at %> ago </p>
+    <%= turbo_frame_tag dom_id(post, :comments) do %>
+      <%= link_to new_post_comment_path(post) do %>
+        <div class="flex">
+          <span class="text-gray-600"> <%= post.comments.count %> comments </span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
